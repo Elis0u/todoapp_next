@@ -1,3 +1,8 @@
-export default function Page() {
-    return <h1>Hello, Next.js!</h1>
-  }
+export default function Home() {
+
+    return (
+        <>
+            <h2>TODO app</h2>
+        </>
+    )
+}

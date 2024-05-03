@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "anybody";
+}
+
+body {
+    background-color: #222222;
+    /* background-color: theme('colors.third'); */
+}
+
+.skew-inverse {
+    transform: skew(20deg);
+}
+
+input {
+    border-radius: 4px;
+    background-color: #383838;
+    color: white;
+    border: 1px solid #575757;
+    padding: 8px 12px;
+}
+
+@layer components {
+    .btn-skew {
+      @apply py-2 font-bold rounded uppercase;
+      transform: skew(-20deg);
+    }
+}
