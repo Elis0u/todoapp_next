@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Header() {
     const { data: session } = useSession()
-
+    console.log(session)
     return (
         <header className="flex items-center justify-between py-4 px-4">
             <h1 className="text-primary text-2xl font-bold">TODOAPP</h1>

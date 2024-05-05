@@ -47,12 +47,12 @@ export default function SignIn() {
                 <p>
                     Don&apos;t have an account ? <Link href="/register" className="text-primary"> Sign up</Link>
                 </p>
-                <div className='text-center text-white'>or login with provider</div>
+                {/* <div className='text-center text-white'>or login with provider</div>
                 <button className='bg-discord text-white btn-skew w-full' onClick={() => signIn('discord', { callbackUrl: `${window.location.origin}/` })}>
                     <span className='block skew-inverse'>
                         Login with discord
                     </span>
-                </button>
+                </button> */}
             </div>
         </>
     )
