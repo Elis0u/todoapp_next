@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { ITask } from '@/models/Task'
 import { getSession, useSession } from 'next-auth/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 interface HomeProps {
     tasks: ITask[]
@@ -69,6 +69,21 @@ export default function Home({ tasks }: HomeProps) {
         }
     }
 
+    const handleDelete = async(item: ITask['_id']) => {
+        try {
+            await fetch('http://localhost:3000/api/tasks/deleteTask', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ item }),
+            })
+            await fetchTasks()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div className='flex flex-col gap-5 text-center text-white max-w-xl mx-auto'>
@@ -83,7 +98,7 @@ export default function Home({ tasks }: HomeProps) {
                 <ul>
                     {taskList.length > 0 ? (
                         taskList.map((task: ITask) => (
-                            <li key={task._id}>{task.title} - {task.isDone ? "Done" : "Not Done"}</li>
+                            <li key={task._id}>{task.title} - {task.isDone ? "Done" : "Not Done"} <span className='text-red-600 cursor-pointer' onClick={() => handleDelete(task._id)}><FontAwesomeIcon icon={faTrash} /></span></li>
                         ))
                     ) : (
                         <li>No tasks to display</li>
