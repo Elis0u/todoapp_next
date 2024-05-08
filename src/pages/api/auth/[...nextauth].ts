@@ -61,7 +61,6 @@ export default NextAuth({
                     id: token.id
                 }
             }
-            return session
         }
     },
     session: {

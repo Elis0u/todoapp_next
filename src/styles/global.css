@@ -23,6 +23,11 @@ input {
     padding: 8px 12px;
 }
 
+.done-task {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
 @layer components {
     .btn-skew {
       @apply py-2 font-bold rounded uppercase;
