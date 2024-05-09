@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     const cookies = ctx.req ? ctx.req.headers.cookie : undefined
     const res = await fetch('http://localhost:3000/api/tasks/readTask', {
         headers: {
-            cookie: cookies || ""
+            cookie: cookies || ''
         }
     })
 
@@ -36,25 +36,25 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
 }
 
 export default function Home({ tasks }: HomeProps) {
-    const [taskList, setTaskList] = useState(tasks || []);
-    const [title, setTitle] = useState<string>('');
-    const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
-    const [updatedTitle, setUpdatedTitle] = useState<string>("");
-    const { data: session } = useSession();
+    const [ taskList, setTaskList ] = useState(tasks || [])
+    const [ title, setTitle ] = useState<string>('')
+    const [ editingTaskId, setEditingTaskId ] = useState<string | null>(null)
+    const [ updatedTitle, setUpdatedTitle ] = useState<string>('')
+    const { data: session } = useSession()
 
     const fetchTasks = async (): Promise<void> => {
         try {
-            const response = await fetch('http://localhost:3000/api/tasks/readTask');
-            const tasks: ITask[] = await response.json();
-            setTaskList(tasks);
+            const response = await fetch('http://localhost:3000/api/tasks/readTask')
+            const tasks: ITask[] = await response.json()
+            setTaskList(tasks)
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-        const email = session?.user?.email;
-        e.preventDefault();
+        const email = session?.user?.email
+        e.preventDefault()
         try {
             await fetch('http://localhost:3000/api/tasks/addTask', {
                 method: 'POST',
@@ -62,12 +62,12 @@ export default function Home({ tasks }: HomeProps) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ title, email }),
-            });
+            })
 
-            await fetchTasks();
-            setTitle('');
+            await fetchTasks()
+            setTitle('')
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
@@ -79,20 +79,20 @@ export default function Home({ tasks }: HomeProps) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ item }),
-            });
-            await fetchTasks();
+            })
+            await fetchTasks()
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
     const handleUpdateTitle = (taskId: string, currentTitle: string) => {
-        setEditingTaskId(taskId);
-        setUpdatedTitle(currentTitle);
+        setEditingTaskId(taskId)
+        setUpdatedTitle(currentTitle)
     }
 
     const handleSubmitUpdate = async (e: React.FormEvent<HTMLFormElement>, taskId: string) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             await fetch('http://localhost:3000/api/tasks/updateTask', {
                 method: 'PUT',
@@ -100,12 +100,12 @@ export default function Home({ tasks }: HomeProps) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ item: taskId, newTitle: updatedTitle }),
-            });
-            await fetchTasks();
-            setEditingTaskId(null);
-            setUpdatedTitle("");
+            })
+            await fetchTasks()
+            setEditingTaskId(null)
+            setUpdatedTitle('')
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 
@@ -117,10 +117,10 @@ export default function Home({ tasks }: HomeProps) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ item: taskId, isDone: !isDone }),
-            });
-            await fetchTasks();
+            })
+            await fetchTasks()
         } catch (error) {
-            console.error(error);
+            console.error(error)
         }
     }
 

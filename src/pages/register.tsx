@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 export default function RegisterPage() {
     const router = useRouter()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [showError, setShowError] = useState(false)
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ username, setUsername ] = useState('')
+    const [ showError, setShowError ] = useState(false)
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

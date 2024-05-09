@@ -22,12 +22,12 @@ export default async function readTask(req: NextApiRequest, res: NextApiResponse
         const session = await getServerSession(req, res, Nextauth) as CustomSession
 
         if (!session || !session.user) {
-            return res.status(401).json({ message: "Unauthorized: No session or user information available." })
+            return res.status(401).json({ message: 'Unauthorized: No session or user information available.' })
         }
 
         const user = await User.findOne({ email: session.user.email })
         if (!user) {
-            return res.status(404).json({ message: "User not found: No user associated with the provided email." })
+            return res.status(404).json({ message: 'User not found: No user associated with the provided email.' })
         }
 
         const tasks = await Task.find({ userId: user._id })

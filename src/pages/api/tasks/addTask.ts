@@ -2,7 +2,7 @@ import Task, { ITask } from '@/models/Task'
 import dbConnect from '@/libs/dbConnect'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import User from '@/models/User'
-import { getServerSession } from "next-auth/next"
+import { getServerSession } from 'next-auth/next'
 import NextAuth from '../auth/[...nextauth]'
 import { Session } from 'next-auth'
 
@@ -33,7 +33,7 @@ export default async function addTask(req: NextApiRequest, res: NextApiResponse)
         const newTaskData: Partial<ITask> = {
             title: req.body.title,
             userId: userId
-        };
+        }
         await Task.create({ title: req.body.title, userId: userId })
         res.status(200).json(newTaskData)
     } catch (error) {

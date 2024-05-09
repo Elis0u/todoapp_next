@@ -44,7 +44,7 @@ export default NextAuth({
         // }),
     ],
     callbacks: {
-        async jwt({token, user, session}) {
+        async jwt({ token, user, session }) {
             if (user) {
                 return {
                     ...token,
@@ -53,7 +53,7 @@ export default NextAuth({
             }
             return token
         },
-        async session({session, token, user}) {
+        async session({ session, token, user }) {
             return {
                 ...session,
                 user: {
