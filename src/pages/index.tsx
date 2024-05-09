@@ -67,7 +67,7 @@ export default function Home({ tasks }: HomeProps) {
             await fetchTasks();
             setTitle('');
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -82,7 +82,7 @@ export default function Home({ tasks }: HomeProps) {
             });
             await fetchTasks();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -105,7 +105,7 @@ export default function Home({ tasks }: HomeProps) {
             setEditingTaskId(null);
             setUpdatedTitle("");
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
@@ -120,7 +120,7 @@ export default function Home({ tasks }: HomeProps) {
             });
             await fetchTasks();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 

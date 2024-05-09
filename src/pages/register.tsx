@@ -21,7 +21,6 @@ export default function RegisterPage() {
         })
 
         if (res.ok) {
-            console.log('Utilisateur enregistré avec succès')
             router.push('/login')
         } else {
             console.error('Erreur lors de l’enregistrement')
